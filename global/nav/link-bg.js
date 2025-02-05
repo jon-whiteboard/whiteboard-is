@@ -106,3 +106,4 @@ document.querySelectorAll('.nav_link').forEach(link => {
         handleMouseLeave(blurBg);
     });
 });
+console.log('link-bg.js loaded');

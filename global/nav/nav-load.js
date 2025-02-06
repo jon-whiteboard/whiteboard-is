@@ -14,13 +14,17 @@ navTimeline
     ease: "quad.inOut",
     stagger: 0.08,
   })
-  .from(
+  .fromTo(
     ".nav_cta",
     {
       y: window.innerHeight,
-      opacity: 0,
+      opacity: 0
+    },
+    {
+      y: 0,
+      opacity: 1,
       duration: 0.5,
-      ease: "expo.out",
+      ease: "expo.out", 
       stagger: 0.4,
     },
     "<0.2"

@@ -77,33 +77,34 @@ navCloseTimeline
   })
   .set(".nav-modal", { display: "none" });
 
-// Open trigger
+// Open/close triggers
 const menuButton = document.querySelector(".navbar_menu-button");
+const closeButton = document.querySelector(".nav-modal_close");
 let isNavOpen = false;
 
 menuButton.addEventListener("click", () => {
   if (!isNavOpen) {
     navTimeline.play();
     isNavOpen = true;
-    menuButton.classList.add("open");
-  } else {
-    navCloseTimeline.play().then(() => {
-      navTimeline.pause(0);
-      navCloseTimeline.pause(0);
-      menuButton.classList.remove("open");
-
-      // Reset to initial positions
-      gsap.set(".nav_link-text", { yPercent: 103 });
-      gsap.set(".nav_cta", { y: window.innerHeight, opacity: 0, x: 0 });
-      gsap.set(".nav_column", {
-        x: -window.innerHeight / 1.5,
-        opacity: 0,
-        y: 0,
-      });
-      gsap.set(".nav-modal", { display: "none", opacity: 0 });
-    });
-    isNavOpen = false;
   }
+});
+
+closeButton.addEventListener("click", () => {
+  navCloseTimeline.play().then(() => {
+    navTimeline.pause(0);
+    navCloseTimeline.pause(0);
+
+    // Reset to initial positions
+    gsap.set(".nav_link-text", { yPercent: 103 });
+    gsap.set(".nav_cta", { y: window.innerHeight, opacity: 0, x: 0 });
+    gsap.set(".nav_column", {
+      x: -window.innerHeight / 1.5,
+      opacity: 0,
+      y: 0,
+    });
+    gsap.set(".nav-modal", { display: "none", opacity: 0 });
+  });
+  isNavOpen = false;
 });
 
 // Set initial state of nav-modal
